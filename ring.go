@@ -139,7 +139,7 @@ func (s *Service) RemoveNode(name string) error {
 	}
 	delete(s.nodes, name)
 
-	kept := s.ring[:0]
+	kept := make([]ringEntry, 0, len(s.ring))
 	for _, e := range s.ring {
 		if e.node != name {
 			kept = append(kept, e)
